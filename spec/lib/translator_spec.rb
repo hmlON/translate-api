@@ -1,13 +1,13 @@
 RSpec.describe Translator do
-  let(:instance) { described_class.new(text: text, to: to) }
-  let(:text) { 'asd' }
-  let(:to) { 'uk' }
+  describe '.call' do
+    subject { described_class.(text: text, to: to) }
+    let(:text) { 'Hello!' }
+    let(:to) { 'uk' }
 
-  describe '.perform' do
-    subject { instance.perform }
+    before { allow(DeepL).to receive_message_chain(:translate, :text).and_return('Привіт!') }
 
-    xit 'translates to the selected language' do
-      expect(subject).to eq('asd')
+    it 'translates to the selected language' do
+      expect(subject).to eq('Привіт!')
     end
 
     context 'when there is an unsupported language'

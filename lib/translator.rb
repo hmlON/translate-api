@@ -1,14 +1,12 @@
+require 'deepl'
+
+DeepL.configure do |config|
+  config.auth_key = ENV['DEEPL_AUTH_KEY']
+  config.host = 'https://api-free.deepl.com'
+end
+
 class Translator
-  def initialize(text:, to:)
-    @text = text
-    @to = to
+  def self.call(text:, to:)
+    DeepL.translate(text, nil, to).text
   end
-
-  def perform
-    text
-  end
-
-  private
-
-  attr_reader :text, :to
 end
