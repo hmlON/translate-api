@@ -5,7 +5,8 @@ RSpec.describe App do
     App
   end
 
-  # before { allow(Translator).to receive(:call).and_return('Привіт!') }
+  before { allow(Translator).to receive(:call).and_return('Привіт!') }
+  before { allow(Translator).to receive(:supported_languages).and_return(['UK', 'JP', 'EN']) }
 
   describe 'POST /translate' do
     let(:text) { 'Hello!' }
