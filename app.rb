@@ -13,5 +13,5 @@ end
 post '/translate' do
   # :text is not empty
   # :to is present and included in languages
-  Translator.(text: params[:text], to: params[:to])
+  JSON.dump({ translation: Translator.(text: params[:text], to: params[:to]) })
 end
