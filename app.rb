@@ -1,10 +1,11 @@
 # assuptions:
 # - the service is going to be available only for the internal usage,
-# otherwise, I'd add some sort of a check for origin of the request
+#   otherwise I'd add some sort of a check for origin of the request
 
-require 'dotenv/load'
 require 'sinatra'
+require './config'
+Dir.glob('./lib/*.rb').each { |file| require file }
 
 get '/' do
-  'Hello world!'
+  Translator.(text: 'Hello, world!', to: 'uk')
 end
